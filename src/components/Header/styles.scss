@@ -1,0 +1,23 @@
+@import '../../global/sass/variables.scss';
+
+.header {
+  min-height: 300px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-end;
+  padding-bottom: 36px;
+
+  background-color: $third-color !important;
+
+  & img {
+    width: 120px;
+    height: 120px;
+    margin-bottom: 30px;
+  }
+
+  & h1 {
+    color: $font-secondary-color;
+    font-size: 44px;
+  }
+}
