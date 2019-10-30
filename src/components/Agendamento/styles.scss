@@ -1,0 +1,41 @@
+.agendamento-container {
+  display: flex;
+  flex-direction: column;
+
+  & .titulo {
+    width: 100%;
+    text-align: center;
+    margin-top: 25px;
+  }
+
+  & .agenda-content {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    min-height: 400px;
+    padding: 20px 70px;
+
+    & .calendario,
+    .equipe-lista {
+      display: flex;
+      width: 48%;
+      // background-color: #f6f6f6;
+    }
+
+    & .calendario {
+      display: flex;
+      justify-content: flex-start;
+    }
+
+    & .equipe-lista {
+      display: flex;
+      flex-direction: column;
+
+      & .titulo-horario {
+        width: 100%;
+        margin-top: 20px;
+        text-align: center;
+      }
+    }
+  }
+}

@@ -1,0 +1,29 @@
+@import '../../sass/variables.scss';
+
+.DayPicker {
+  font-size: 1.4rem;
+}
+
+.DayPicker-NavButton {
+  left: auto;
+  right: auto;
+  position: static;
+}
+
+.DayPicker-NavButton--prev {
+  position: absolute;
+  left: 15px;
+}
+
+.DayPicker-NavButton--next {
+  right: 15px;
+  position: absolute;
+}
+
+.DayPicker-Caption {
+  text-align: center;
+}
+
+.DayPicker-Day--selected {
+  outline: none;
+}
