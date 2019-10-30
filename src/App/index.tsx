@@ -3,7 +3,7 @@ import React from 'react';
 const App: React.FC = () => (
   <div className="App">
     <header className="App-header">
-      <a href="#">Caneta Azul</a>
+      <h1>BLA</h1>
     </header>
   </div>
 );

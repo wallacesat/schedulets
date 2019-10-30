@@ -1,0 +1,37 @@
+@import '../../sass/variables.scss';
+
+.servico-box {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 0;
+  border-top: 1px solid;
+  border-bottom: 1px solid;
+  border-color: $border-color-base;
+  margin-bottom: -1px;
+  cursor: pointer;
+
+  &:hover {
+    background-color: $secondary-color;
+  }
+  &.active {
+    background-color: $primary-color;
+  }
+
+  min-width: 45%;
+
+  & .servico-detalhes {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  & .info-icon {
+    font-size: 24px;
+    color: $bg-transparent-ligth;
+
+    &:hover {
+      color: $bg-transparent-dark;
+    }
+  }
+}

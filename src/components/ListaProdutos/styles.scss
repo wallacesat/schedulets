@@ -1,0 +1,19 @@
+@import '../../sass/variables.scss';
+
+.lista-servicos-box {
+  display: flex;
+  flex-direction: column;
+  padding-bottom: 40px;
+
+  & h3 {
+    width: 100%;
+    text-align: center;
+    margin: 25px 0;
+  }
+
+  & .servicos {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+  }
+}
