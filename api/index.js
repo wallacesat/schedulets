@@ -1,6 +1,7 @@
 const express = require('express');
 const chalk = require('chalk');
 const bodyParser = require('body-parser');
+const cors = require('cors');
 
 const dashboard = require('./routes/dashboard/');
 
@@ -9,6 +10,7 @@ const basePath = '/api';
 
 const app = express();
 
+app.use(cors());
 app.use(bodyParser.json());
 app.use(basePath, dashboard);
 
