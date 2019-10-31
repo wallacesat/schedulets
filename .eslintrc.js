@@ -32,7 +32,9 @@ module.exports = {
     'import/prefer-default-export': 'off',
     '@typescript-eslint/explicit-function-return-type': 'off',
     '@typescript-eslint/explicit-member-accessibility': 'off',
-    'max-len': 'off'
+    'max-len': 'off',
+    'import/no-extraneous-dependencies': 'off',
+    '@typescript-eslint/no-var-requires': 'off'
   },
   settings: {
     'import/parsers': {
