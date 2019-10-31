@@ -21,6 +21,7 @@ export default function ListaProdutos({ produtos } : {produtos: Produto[]}): Rea
               servico={item}
               paddingLeft={index === 0 || index % 2 === 0 ? '70px' : '20px'}
               paddingRight={index === 0 || index % 2 === 0 ? '20px' : '70px'}
+              key={item.id}
             />
           ))}
       </div>
