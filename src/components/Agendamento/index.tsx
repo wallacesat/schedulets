@@ -3,10 +3,11 @@ import { startOfMonth, endOfMonth } from 'date-fns';
 import DayPicker from 'react-day-picker';
 
 import Equipe from '../Equipe';
+import DynamicTitle from './DynamicTitle';
 
 import { MONTHS, WEEKDAYS_LONG, WEEKDAYS_SHORT } from '../../utils/date';
 
-import { Agenda } from '../../pages/Dashboard/types';
+import { Agenda, Equipe as EquipeType } from '../../pages/Dashboard/types';
 
 import 'react-day-picker/lib/style.css';
 import './dayPickerSubscribe.scss';
@@ -18,18 +19,23 @@ export default function Agendamento({ initialDate = undefined, loading = false, 
   agenda: Agenda | undefined
 }) {
   const [selectedDay, setSelectedDay] = useState<Date | undefined>(undefined);
+  const [equipe, setEquipe] = useState<EquipeType | undefined>(undefined);
 
   useEffect(() => {
     if (initialDate) setSelectedDay(initialDate);
   }, [initialDate]);
 
-  function handleDayClick(day: Date) {
+  function handleDayClick(day: Date): void {
     setSelectedDay(day);
+  }
+
+  function handleSelectedEquipe(selectedEquipe: EquipeType | undefined): void {
+    setEquipe(selectedEquipe);
   }
 
   return (
     <div className="agendamento-container">
-      <h3 className="titulo">Selecionar Hora</h3>
+      <DynamicTitle date={selectedDay} equipe={equipe} />
       <div className="agenda-content">
         <div className="calendario">
           <DayPicker
@@ -54,7 +60,7 @@ export default function Agendamento({ initialDate = undefined, loading = false, 
               <span className="titulo">
                 Selecionar equipe (opicional)
               </span>
-              <Equipe />
+              <Equipe handleSelectedEquipe={handleSelectedEquipe} />
             </div>
           )}
       </div>

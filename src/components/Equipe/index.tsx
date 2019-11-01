@@ -25,7 +25,7 @@ const content: Equipe[] | EquipeSelectable[] = [
   },
 ];
 
-export default function AgendaEquipe() {
+export default function AgendaEquipe({ handleSelectedEquipe }:{handleSelectedEquipe: (selectedEquipe: Equipe | undefined) => void}) {
   const [displayMenu, setDisplayMenu] = useState<boolean>(false);
   const [selected, setSelected] = useState<Equipe | undefined>(undefined);
   const [equipe, setEquipe] = useState<EquipeSelectable[] | []>([]);
@@ -40,12 +40,14 @@ export default function AgendaEquipe() {
 
 
   function selectEquipe(equipeSelected: EquipeSelectable): void {
+    handleSelectedEquipe(equipeSelected);
     setSelected(equipeSelected);
     setDisplayMenu(false);
   }
 
   function unselectAllEquipes() {
     setEquipe((equipe as EquipeSelectable[]).map((item): EquipeSelectable => ({ ...item, selected: false })));
+    handleSelectedEquipe(undefined);
     setSelected(undefined);
     setDisplayMenu(false);
   }
