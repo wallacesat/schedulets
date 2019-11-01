@@ -13,10 +13,10 @@ export default function ListaProdutos({ produtos, handleProductSelection, handle
   handleProductSelection: (idProduct: number) => void,
   handleOpenModal: (content: Produto) => void
 }): React.ReactElement {
-  const selectedProduct = useSelector((state: ApplicationState) => state.produtos.data.find((item) => item.selecionado));
+  const selectedProduct = produtos.find((item) => item.selecionado);
   return (
     <div className="lista-servicos-box">
-      <h3>{(selectedProduct && selectedProduct.selecionado) || 'Selecionar serviço'}</h3>
+      <h3>{selectedProduct && selectedProduct.selecionado ? selectedProduct.titulo : 'Selecionar serviço'}</h3>
       <div className="servicos">
         {produtos
           && produtos.map((item, index) => (
