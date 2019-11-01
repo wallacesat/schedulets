@@ -2,13 +2,21 @@ import React, { useState, useEffect } from 'react';
 import { startOfMonth, endOfMonth } from 'date-fns';
 import DayPicker from 'react-day-picker';
 
+import Equipe from '../Equipe';
+
 import { MONTHS, WEEKDAYS_LONG, WEEKDAYS_SHORT } from '../../utils/date';
+
+import { Agenda } from '../../pages/Dashboard/types';
 
 import 'react-day-picker/lib/style.css';
 import './dayPickerSubscribe.scss';
 import './styles.scss';
 
-export default function Agendamento({ initialDate = undefined, loading = false }: {initialDate?: Date | undefined, loading: boolean}) {
+export default function Agendamento({ initialDate = undefined, loading = false, agenda }: {
+  initialDate?: Date | undefined,
+  loading: boolean,
+  agenda: Agenda | undefined
+}) {
   const [selectedDay, setSelectedDay] = useState<Date | undefined>(undefined);
 
   useEffect(() => {
@@ -34,11 +42,21 @@ export default function Agendamento({ initialDate = undefined, loading = false }
             disabledDays={(!selectedDay && { from: startOfMonth(new Date()), to: endOfMonth(new Date()) }) || undefined}
           />
         </div>
-        <div className="equipe-lista">
-          <span className="titulo-horario">
-          Selecione um serviço e a data para ver os horários disponíveis.
-          </span>
-        </div>
+        {agenda ? (
+          <div className="empty-lista">
+            <span className="titulo-horario">
+              Selecione um serviço e a data para ver os horários disponíveis.
+            </span>
+          </div>
+        )
+          : (
+            <div className="equipe-lista">
+              <span className="titulo">
+                Selecionar equipe (opicional)
+              </span>
+              <Equipe />
+            </div>
+          )}
       </div>
     </div>
   );

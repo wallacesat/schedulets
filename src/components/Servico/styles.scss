@@ -10,12 +10,14 @@
   border-color: $border-color-base;
   margin-bottom: -1px;
   cursor: pointer;
+  outline: none;
 
   &:hover {
     background-color: $secondary-color;
   }
   &.active {
     background-color: $primary-color;
+    color: $secondary-color;
   }
 
   min-width: 45%;
