@@ -4,7 +4,7 @@
 export enum ProdutosTypes {
   LOAD_REQUEST = '@produtos/LOAD_REQUEST',
   LOAD_SUCCESS = '@produtos/LOAD_SUCCESS',
-  LOAD_FAILURE = '@produtos/LOAD_FAILURE'
+  LOAD_FAILURE = '@produtos/LOAD_FAILURE',
 }
 
 /**

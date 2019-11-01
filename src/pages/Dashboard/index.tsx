@@ -22,20 +22,27 @@ import './styles.scss';
 
 export default function Dashboard() {
   const [loading, setLoading] = useState<boolean>(false);
+  const [produtos, setProdutos] = useState<Produto[]>([]);
   const [initialDate, setInitialDate] = useState<Date | undefined>(undefined);
   const [isOpen, setIsOpen] = useState<boolean>(false);
   const [agenda, setAgenda] = useState<Agenda | undefined>(undefined);
   const [modalContent, setModalContent] = useState<Produto | undefined>(undefined);
 
-  const produtos = useSelector((state: ApplicationState) => state.produtos.data);
-  const dispatch = useDispatch();
+  const stateProducts = useSelector((state: ApplicationState) => state.produtos.data);
+  if (!produtos[0] && stateProducts[0]) setProdutos(stateProducts);
 
+  const dispatch = useDispatch();
   useEffect(() => {
     dispatch(loadRequest());
   }, [dispatch]);
 
   function handleProductSelection(idProduct: number): void {
     setLoading(true);
+
+    setProdutos((produtos as Produto[]).map((item:Produto) => (item.id === idProduct
+      ? { ...item, selecionado: true }
+      : { ...item, selecionado: false }
+    )));
 
     const requestDate = getTime(addDays(new Date(), 1));
     const request = api.get(`/agenda/${idProduct}?date=${requestDate}`) as Response;
