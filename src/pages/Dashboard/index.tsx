@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { FaInfoCircle } from 'react-icons/fa';
 
-import { addDays, getTime } from 'date-fns';
+import { startOfDay, getTime, addBusinessDays } from 'date-fns';
 
 import { ApplicationState } from '../../store';
 
@@ -39,12 +39,12 @@ export default function Dashboard() {
   function handleProductSelection(idProduct: number): void {
     setLoading(true);
 
-    setProdutos((produtos as Produto[]).map((item:Produto) => (item.id === idProduct
+    setProdutos((produtos as Produto[]).map((item) => (item.id === idProduct
       ? { ...item, selecionado: true }
       : { ...item, selecionado: false }
     )));
 
-    const requestDate = getTime(addDays(new Date(), 1));
+    const requestDate = getTime(addBusinessDays(startOfDay(new Date()), 1));
     const request = api.get(`/agenda/${idProduct}?date=${requestDate}`) as Response;
 
     setAgenda(request.data);
@@ -71,7 +71,7 @@ export default function Dashboard() {
         />
       </div>
       <div className="page-content shadow-box">
-        <Agendamento initialDate={initialDate} loading={loading} />
+        <Agendamento initialDate={initialDate} loading={loading} agenda={agenda} />
       </div>
       <Modal isOpen={isOpen}>
         {isOpen && modalContent && (
