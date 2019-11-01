@@ -3,7 +3,7 @@ import React from 'react';
 import './styles.scss';
 
 const Modal = ({ children, isOpen = false }:
-  {children: React.ReactElement, isOpen: boolean}) => (
+  {children?: boolean | JSX.Element | undefined, isOpen: boolean}) => (
     <div
       className="modal-container"
       style={{ display: `${isOpen ? 'flex' : 'none'}` }}

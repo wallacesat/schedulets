@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { startOfMonth, endOfMonth } from 'date-fns';
 import DayPicker from 'react-day-picker';
 
 import { MONTHS, WEEKDAYS_LONG, WEEKDAYS_SHORT } from '../../utils/date';
@@ -7,8 +8,12 @@ import 'react-day-picker/lib/style.css';
 import './dayPickerSubscribe.scss';
 import './styles.scss';
 
-export default function Agendamento() {
+export default function Agendamento({ initialDate = undefined, loading = false }: {initialDate?: Date | undefined, loading: boolean}) {
   const [selectedDay, setSelectedDay] = useState<Date | undefined>(undefined);
+
+  useEffect(() => {
+    if (initialDate) setSelectedDay(initialDate);
+  }, [initialDate]);
 
   function handleDayClick(day: Date) {
     setSelectedDay(day);
@@ -26,6 +31,7 @@ export default function Agendamento() {
             weekdaysShort={WEEKDAYS_SHORT}
             onDayClick={handleDayClick}
             selectedDays={selectedDay}
+            disabledDays={(!selectedDay && { from: startOfMonth(new Date()), to: endOfMonth(new Date()) }) || undefined}
           />
         </div>
         <div className="equipe-lista">

@@ -5,8 +5,14 @@ import './styles.scss';
 
 import { Produto } from '../../store/ducks/produtos/types';
 
-export default function Servico({ servico, paddingLeft, paddingRight }: {
-  servico: Produto, paddingLeft: string, paddingRight: string }) {
+export default function Servico({
+  servico, paddingLeft, paddingRight, handleProductSelection, handleOpenModal,
+}: {
+  servico: Produto,
+  paddingLeft: string,
+  paddingRight: string,
+  handleProductSelection: (idProduct: number) => void,
+  handleOpenModal: (content: Produto) => void }) {
   return (
     <>
       <div
@@ -15,6 +21,10 @@ export default function Servico({ servico, paddingLeft, paddingRight }: {
           paddingLeft,
           paddingRight,
         }}
+        onClick={() => handleProductSelection(servico.id)}
+        onKeyDown={undefined}
+        role="button"
+        tabIndex={0}
       >
         <div className="servico-detalhes">
           <span className="titulo">{servico.titulo}</span>
@@ -28,7 +38,7 @@ export default function Servico({ servico, paddingLeft, paddingRight }: {
         <FaInfoCircle
           className="info-icon"
           cursor="pointer"
-          onClick={(e) => {}}
+          onClick={(e) => handleOpenModal(servico)}
         />
       </div>
     </>
